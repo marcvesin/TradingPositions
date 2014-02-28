@@ -1,6 +1,13 @@
-Trading::Application.routes.draw do
-  get "say/hello"
-  get "say/goodbye"
+TradingPositions::Application.routes.draw do
+  resources :transactions
+
+  resources :traders
+
+  resources :stocks
+
+  get "trading/home"
+  get "trading/trades"
+  get "trading/manager"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

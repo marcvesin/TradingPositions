@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Trading::Application.load_tasks
+TradingPositions::Application.load_tasks
