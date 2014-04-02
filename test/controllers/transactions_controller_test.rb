@@ -3,6 +3,13 @@ require 'test_helper'
 class TransactionsControllerTest < ActionController::TestCase
   setup do
     @transaction = transactions(:one)
+    @update = {
+        trader_id: 1,
+        stock_id: 1,
+        execution_date: '28/02/2014',
+        quantity: 100,
+        price: 543.00
+    }
   end
 
   test "should get index" do
@@ -18,7 +25,7 @@ class TransactionsControllerTest < ActionController::TestCase
 
   test "should create transaction" do
     assert_difference('Transaction.count') do
-      post :create, transaction: { execution_date: @transaction.execution_date, price: @transaction.price, quantity: @transaction.quantity, stock_id: @transaction.stock_id, trader_id: @transaction.trader_id }
+      post :create, transaction: @update
     end
 
     assert_redirected_to transaction_path(assigns(:transaction))
@@ -35,7 +42,7 @@ class TransactionsControllerTest < ActionController::TestCase
   end
 
   test "should update transaction" do
-    patch :update, id: @transaction, transaction: { execution_date: @transaction.execution_date, price: @transaction.price, quantity: @transaction.quantity, stock_id: @transaction.stock_id, trader_id: @transaction.trader_id }
+    patch :update, id: @transaction, transaction: @update
     assert_redirected_to transaction_path(assigns(:transaction))
   end
 

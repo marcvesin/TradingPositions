@@ -1,9 +1,45 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Home', trading_index_path %>
+<%= link_to 'Traders', traders_path %>
+<%= link_to 'Stocks', stocks_path %>
+<%= link_to 'Transactions', transactions_path %>
+
+<h1>Trader transactions</h1>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Trader:</strong>
   <%= @trader.name %>
 </p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Stock</th>
+    <th>Execution date</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.stock.name %></td>
+        <td><%= transaction.execution_date %></td>
+        <td><%= transaction.quantity %></td>
+        <td><%= number_to_currency(transaction.price) %></td>
+        <td><%= link_to 'Show', transaction %></td>
+        <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
+        <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
 
 <%= link_to 'Edit', edit_trader_path(@trader) %> |
 <%= link_to 'Back', traders_path %>

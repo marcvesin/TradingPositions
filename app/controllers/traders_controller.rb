@@ -10,6 +10,7 @@ class TradersController < ApplicationController
   # GET /traders/1
   # GET /traders/1.json
   def show
+    @transactions = Transaction.where(:trader_id => params[:id]).sort_by {|transaction| transaction.execution_date }.reverse
   end
 
   # GET /traders/new

@@ -1,5 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  autocomplete :traders,:name
+  autocomplete :stocks,:name
 
   # GET /transactions
   # GET /transactions.json
@@ -24,8 +26,11 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+    @trader = Trader.find_by_name(transaction_params[:trader_id])
+    @stock = Stock.find_by_name(transaction_params[:stock_id])
     @transaction = Transaction.new(transaction_params)
-
+    @transaction.trader_id = @trader.id
+    @transaction.stock_id = @stock.id
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }

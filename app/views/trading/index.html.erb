@@ -1,0 +1,26 @@
+<%= link_to 'Traders', traders_path %>
+<%= link_to 'Stocks', stocks_path %>
+<%= link_to 'Transactions', transactions_path %>
+
+<h1>Trading Manager</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Trader</th>
+    <th>Position</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @traders.each do |trader| %>
+      <tr>
+        <td><%= link_to trader.name, trader_path(trader) %></td>
+        <td><%= number_to_currency(trader.total_position) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

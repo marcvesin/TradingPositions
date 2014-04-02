@@ -1,3 +1,7 @@
+<%= link_to 'Home', trading_index_path %>
+<%= link_to 'Traders', traders_path %>
+<%= link_to 'Stocks', stocks_path %>
+
 <h1>Listing transactions</h1>
 
 <table>
@@ -17,11 +21,11 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.trader_id %></td>
-        <td><%= transaction.stock_id %></td>
+        <td><%= transaction.trader.name %></td>
+        <td><%= transaction.stock.name %></td>
         <td><%= transaction.execution_date %></td>
         <td><%= transaction.quantity %></td>
-        <td><%= transaction.price %></td>
+        <td><%= number_to_currency(transaction.price) %></td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

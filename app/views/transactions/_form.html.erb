@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :trader_id %><br>
-    <%= f.number_field :trader_id %>
+    <%= f.autocomplete_field :trader_id, autocomplete_traders_id_path %>
   </div>
   <div class="field">
     <%= f.label :stock_id %><br>
-    <%= f.number_field :stock_id %>
+    <%= f.autocomplete_field :stock_id, autocomplete_stocks_name_path %>
   </div>
   <div class="field">
     <%= f.label :execution_date %><br>

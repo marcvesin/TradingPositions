@@ -3,6 +3,9 @@ require 'test_helper'
 class TradersControllerTest < ActionController::TestCase
   setup do
     @trader = traders(:one)
+    @update = {
+      name: 'Marc'
+    }
   end
 
   test "should get index" do
@@ -18,7 +21,7 @@ class TradersControllerTest < ActionController::TestCase
 
   test "should create trader" do
     assert_difference('Trader.count') do
-      post :create, trader: { name: @trader.name }
+      post :create, trader: @update
     end
 
     assert_redirected_to trader_path(assigns(:trader))
@@ -35,7 +38,7 @@ class TradersControllerTest < ActionController::TestCase
   end
 
   test "should update trader" do
-    patch :update, id: @trader, trader: { name: @trader.name }
+    patch :update, id: @trader, trader: @update
     assert_redirected_to trader_path(assigns(:trader))
   end
 
