@@ -1,14 +1,13 @@
 TradingPositions::Application.routes.draw do
   get "trading/index"
-  resources :transactions
-
-  resources :traders do
-    get :autocomplete_traders_id, :on => :collection
+  resources :transactions do
+    get :autocomplete_trader_name, :on => :collection
+    get :autocomplete_stock_name, :on => :collection
   end
 
-  resources :stocks do
-    get :autocomplete_stocks_name, :on => :collection
-  end
+  resources :traders
+
+  resources :stocks
 
   get "trading/home"
   get "trading/trades"

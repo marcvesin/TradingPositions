@@ -1,7 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-  autocomplete :traders,:name
-  autocomplete :stocks,:name
+  autocomplete :trader, :name
+  autocomplete :stock, :name
 
   # GET /transactions
   # GET /transactions.json
